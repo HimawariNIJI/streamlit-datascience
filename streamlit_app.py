@@ -513,7 +513,7 @@ with st.sidebar:
     st.button("📊 Dashboard", use_container_width=True, disabled=True)
 
     if st.button("👥 Member", use_container_width=True):
-        st.switch_page("pages/Member.py")
+        st.switch_page("pages/member.py")
 
     st.markdown("---")
     st.markdown("## ⚗ Filters")
