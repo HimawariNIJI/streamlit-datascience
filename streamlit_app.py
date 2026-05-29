@@ -1,3 +1,4 @@
+
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -35,6 +36,10 @@ st.set_page_config(
 # =========================================================
 st.markdown("""
 <style>
+    [data-testid="stSidebarNav"] {
+        display: none;
+    }
+
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
     html, body, [class*="css"] {
@@ -503,9 +508,13 @@ models, model_info = train_models(df)
 # SIDEBAR FILTERS
 # =========================================================
 with st.sidebar:
-    st.markdown("### Dashboard")
-    st.markdown("### Notebook Flow")
-    st.markdown("### Model Output")
+    st.markdown("## 📡 Menu")
+
+    st.button("📊 Dashboard", use_container_width=True, disabled=True)
+
+    if st.button("👥 Member", use_container_width=True):
+        st.switch_page("pages/Member.py")
+
     st.markdown("---")
     st.markdown("## ⚗ Filters")
 
@@ -577,20 +586,6 @@ st.link_button(
     "🔗 Open Telco Customer Churn Dataset on Kaggle",
     "https://www.kaggle.com/datasets/blastchar/telco-customer-churn"
 )
-
-st.markdown(
-"""
-<div class="group-card">
-    <b>Group Members:</b><br>
-    Kevin Febrian Setiadi - 0706022410001<br>
-    Ethan Cannavaro Lauda - 0706022410002<br>
-    Casey Daniella Winarto - 0706022410026
-</div>
-""",
-unsafe_allow_html=True
-)
-
-st.write("")
 
 # =========================================================
 # KPI
@@ -679,15 +674,47 @@ r1, r2 = st.columns([1, 1])
 
 with r1:
     corr = filtered_df[["SeniorCitizen", "tenure", "MonthlyCharges", "TotalCharges"]].corr()
+    
+    # 1. Matikan text_auto bawaan agar tidak bentrok atau error
     fig = px.imshow(
         corr,
-        text_auto=True,
+        text_auto=False, # Dinonaktifkan karena kita akan buat teks manual yang aman
         title="Correlation Heatmap",
         color_continuous_scale="RdBu",
         zmin=-1,
         zmax=1
     )
-    st.plotly_chart(clean_plotly(fig, 420), use_container_width=True)
+    
+    # 2. Jalankan fungsi pembersih Anda terlebih dahulu
+    fig = clean_plotly(fig, 420)
+    
+    # 3. BUAT TEKS MANUAL DENGAN LOGIKAL WARNA KONTRAS
+    annotations = []
+    for i, row_name in enumerate(corr.index):
+        for j, col_name in enumerate(corr.columns):
+            val = corr.iloc[i, j]
+            
+            # Jika nilai kuat (kotak gelap), beri teks putih. Jika lemah, beri hitam.
+            font_color = "white" if abs(val) > 0.4 else "black"
+            
+            annotations.append(
+                dict(
+                    x=col_name,
+                    y=row_name,
+                    text=f"{val:.2f}", # Membatasi 2 angka di belakang koma (termasuk 1.00)
+                    showarrow=False,
+                    font=dict(
+                        color=font_color,
+                        weight="bold",  # Membuat teks tebal agar terbaca jelas
+                        size=13
+                    )
+                )
+            )
+            
+    # 4. Terapkan teks manual tersebut ke dalam grafik
+    fig.update_layout(annotations=annotations)
+    
+    st.plotly_chart(fig, use_container_width=True)
 
 with r2:
     box_feature = st.selectbox(
@@ -714,7 +741,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-cat1, cat2, cat3 = st.columns([1, 1, 1])
+cat1, cat2, cat3 = st.columns([1, 1, 2])
 
 with cat1:
     dep = filtered_df.groupby(["Dependents", "Churn"], as_index=False).size()
@@ -727,6 +754,15 @@ with cat1:
         text="size",
         title="Churn Based on Dependents",
         color_discrete_map={"Yes": "#FF6B6B", "No": "#1971C2"}
+    )
+    fig.update_traces(
+        textposition='outside', 
+        textangle=0,            
+        cliponaxis=False
+    )
+    fig.update_layout(
+        # Membuat legenda menjadi horizontal di bawah agar tidak menabrak label axis
+        legend=dict(orientation="h", yanchor="top", y=-0.25, xanchor="center", x=0.5, title_text="")
     )
     st.plotly_chart(clean_plotly(fig, 390), use_container_width=True)
 
@@ -742,6 +778,15 @@ with cat2:
         title="Churn Based on Contract",
         color_discrete_map={"Yes": "#FF6B6B", "No": "#1971C2"}
     )
+
+    fig.update_traces(
+        textposition='outside', 
+        textangle=0,            
+        cliponaxis=False
+    )
+    fig.update_layout(
+        legend=dict(orientation="h", yanchor="top", y=-0.25, xanchor="center", x=0.5, title_text="")
+    )
     st.plotly_chart(clean_plotly(fig, 390), use_container_width=True)
 
 with cat3:
@@ -755,6 +800,14 @@ with cat3:
         title="Churn Rate by Payment Method",
         color="Churn Rate",
         color_continuous_scale=["#DCFCE7", "#FEF3C7", "#FEE2E2"]
+    )
+    fig.update_traces(
+        textposition='outside', 
+        textangle=0,            
+        cliponaxis=False        
+    )
+    fig.update_layout(
+        margin=dict(r=50) 
     )
     st.plotly_chart(clean_plotly(fig, 390), use_container_width=True)
 
@@ -1016,3 +1069,4 @@ if submitted:
     st.dataframe(input_data, use_container_width=True)
 
     st.caption("Note: tenure and MonthlyCharges are standardized using the same scaler as the training data.")
+
