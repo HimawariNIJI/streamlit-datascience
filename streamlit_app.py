@@ -1,4 +1,3 @@
-
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -205,6 +204,19 @@ st.markdown("""
         margin: 1.8rem 0;
         border-color: #E4E7EC;
     }
+            
+            .group-card {
+    margin-top: 22px;
+    padding: 18px 20px;
+    background: #ffffff;
+    border: 1px solid #e4e7ec;
+    border-radius: 16px;
+    color: #23324A;
+    font-size: 16px;
+    line-height: 1.8;
+    box-shadow: 0 8px 24px rgba(16, 24, 40, 0.06);
+    max-width: 720px;
+}
 </style>
 """, unsafe_allow_html=True)
 
@@ -491,9 +503,9 @@ models, model_info = train_models(df)
 # SIDEBAR FILTERS
 # =========================================================
 with st.sidebar:
-    st.markdown("### ▦ Dashboard")
-    st.markdown("### 📘 Notebook Flow")
-    st.markdown("### 🤖 Model Output")
+    st.markdown("### Dashboard")
+    st.markdown("### Notebook Flow")
+    st.markdown("### Model Output")
     st.markdown("---")
     st.markdown("## ⚗ Filters")
 
@@ -544,18 +556,41 @@ if senior_filter != "All":
 # HERO
 # =========================================================
 st.markdown(
-    """
-    <div class="hero-wrap">
-        <div class="hero-title">📡 Telco Customer Churn Dashboard</div>
-        <div class="hero-subtitle">
-            Interactive dashboard based on the latest <b>ALP CEK notebook</b>. 
-            This version follows the updated model flow: data cleaning, standardization, encoding, multicollinearity removal, SMOTE, hyperparameter-tuned models, and model evaluation.
-            <br><b>Dataset:</b> <a href="https://www.kaggle.com/datasets/blastchar/telco-customer-churn" target="_blank">Telco Customer Churn from Kaggle</a>
-        </div>
+"""
+<div class="hero-wrap">
+    <div class="hero-title">📡 Telco Customer Churn Dashboard</div>
+    <div class="hero-subtitle">
+        This dashboard shows customer churn analysis in the telecommunication industry.
+        It helps us understand customer behavior, find factors that may cause churn,
+        and compare machine learning models to predict whether a customer will churn or not.
+        <br><br>
+        The analysis follows the latest <b>ALP CEK notebook</b>, including data cleaning,
+        standardization, encoding, multicollinearity removal, SMOTE, model training,
+        and model evaluation.
     </div>
-    """,
-    unsafe_allow_html=True
+</div>
+""",
+unsafe_allow_html=True
 )
+
+st.link_button(
+    "🔗 Open Telco Customer Churn Dataset on Kaggle",
+    "https://www.kaggle.com/datasets/blastchar/telco-customer-churn"
+)
+
+st.markdown(
+"""
+<div class="group-card">
+    <b>Group Members:</b><br>
+    Kevin Febrian Setiadi - 0706022410001<br>
+    Ethan Cannavaro Lauda - 0706022410002<br>
+    Casey Daniella Winarto - 0706022410026
+</div>
+""",
+unsafe_allow_html=True
+)
+
+st.write("")
 
 # =========================================================
 # KPI
