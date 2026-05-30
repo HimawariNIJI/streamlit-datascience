@@ -99,6 +99,28 @@ st.markdown("""
         font-size: 15px;
         line-height: 1.6;
     }
+            /* Tombol Member di sidebar */
+section[data-testid="stSidebar"] .stButton > button {
+    background-color: #34465F !important;
+    color: #F5F7FB !important;
+    border: 1px solid rgba(255,255,255,0.15) !important;
+    border-radius: 12px !important;
+    font-weight: 600 !important;
+    transition: all 0.2s ease !important;
+}
+
+section[data-testid="stSidebar"] .stButton > button:hover {
+    background-color: #4A6080 !important;
+    border-color: rgba(255,255,255,0.3) !important;
+}
+
+/* Tombol Dashboard (disabled) */
+section[data-testid="stSidebar"] .stButton > button:disabled {
+    background-color: #1971C2 !important;
+    color: white !important;
+    opacity: 1 !important;
+    border: none !important;
+}
 </style>
 """, unsafe_allow_html=True)
 

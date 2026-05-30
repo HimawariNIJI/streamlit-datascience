@@ -54,20 +54,53 @@ st.markdown("""
         background: rgba(247, 249, 252, 0.85);
     }
 
-    section[data-testid="stSidebar"] {
-        background: linear-gradient(180deg, #182538 0%, #21324A 100%);
-        border-right: 1px solid rgba(255,255,255,0.08);
+    /* =====================================================
+       SIDEBAR - NAVY BACKGROUND + WHITE FILTER BOXES
+       ===================================================== */
+
+    [data-testid="stSidebar"] {
+        background: linear-gradient(180deg, #182538 0%, #21324A 100%) !important;
+        border-right: 1px solid rgba(255,255,255,0.08) !important;
     }
 
-    section[data-testid="stSidebar"] * {
-        color: #F5F7FB !important;
+    [data-testid="stSidebar"] > div {
+        background: linear-gradient(180deg, #1D2E45 0%, #263A55 100%) !important;
     }
 
-    section[data-testid="stSidebar"] div[data-baseweb="select"] > div,
-    section[data-testid="stSidebar"] input {
-        background-color: #34465F !important;
-        border-radius: 12px !important;
-        border: 0 !important;
+    [data-testid="stSidebar"] h1,
+    [data-testid="stSidebar"] h2,
+    [data-testid="stSidebar"] h3,
+    [data-testid="stSidebar"] p,
+    [data-testid="stSidebar"] label,
+    [data-testid="stSidebar"] .stMarkdown,
+    [data-testid="stSidebar"] .stMarkdown * {
+        color: #F8FAFC !important;
+        opacity: 1 !important;
+    }
+
+    [data-testid="stSidebar"] hr {
+        border-color: rgba(255,255,255,0.16) !important;
+    }
+
+    /* Sidebar buttons */
+    [data-testid="stSidebar"] .stButton > button {
+        background-color: #304761 !important;
+        color: #23324A !important;
+        border: 1px solid #CBD5E1 !important;
+        border-radius: 14px !important;
+        font-weight: 700 !important;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.10) !important;
+        transition: all 0.2s ease !important;
+    }
+
+    [data-testid="stSidebar"] .stButton > button:hover {
+        background-color: #49627E !important;
+        border-color: #B7CBE1 !important;
+        color: #23324A !important;
+    }
+
+    [data-testid="stSidebar"] [data-testid="stSlider"] * {
+        color: #F8FAFC !important;
     }
 
     .block-container {
@@ -209,19 +242,151 @@ st.markdown("""
         margin: 1.8rem 0;
         border-color: #E4E7EC;
     }
-            
-            .group-card {
-    margin-top: 22px;
-    padding: 18px 20px;
-    background: #ffffff;
-    border: 1px solid #e4e7ec;
-    border-radius: 16px;
-    color: #23324A;
-    font-size: 16px;
-    line-height: 1.8;
-    box-shadow: 0 8px 24px rgba(16, 24, 40, 0.06);
-    max-width: 720px;
+
+    .group-card {
+        margin-top: 22px;
+        padding: 18px 20px;
+        background: #ffffff;
+        border: 1px solid #e4e7ec;
+        border-radius: 16px;
+        color: #23324A;
+        font-size: 16px;
+        line-height: 1.8;
+        box-shadow: 0 8px 24px rgba(16, 24, 40, 0.06);
+        max-width: 720px;
+    }
+
+    /* =====================================================
+       CHART EXPLANATION CARD
+       ===================================================== */
+    .chart-insight {
+        background: #FFFFFF;
+        border: 1px solid #D8EAFF;
+        border-left: 6px solid #3B73B9;
+        border-radius: 16px;
+        padding: 16px 18px;
+        margin-top: -6px;
+        margin-bottom: 24px;
+        box-shadow: 0 8px 22px rgba(16, 24, 40, 0.05);
+        color: #23324A;
+        font-size: 14px;
+        line-height: 1.65;
+    }
+
+    .chart-insight-title {
+        font-size: 14px;
+        font-weight: 800;
+        color: #23324A;
+        margin-bottom: 6px;
+    }
+
+    .chart-insight-text {
+        color: #5F6B7A;
+        font-weight: 500;
+        margin-bottom: 10px;
+    }
+
+    .chart-conclusion {
+        background: #EEF6FF;
+        border: 1px solid #D8EAFF;
+        border-radius: 12px;
+        padding: 10px 12px;
+        color: #23324A;
+        font-weight: 600;
+    }
+
+    /* =====================================================
+   FINAL SIDEBAR FILTER STYLE
+   ===================================================== */
+
+/* Kotak filter tetap navy */
+[data-testid="stSidebar"] div[data-baseweb="select"] > div {
+    background-color: #23324A !important;
+    border: 1px solid #CBD5E1 !important;
+    border-radius: 16px !important;
+    color: #FFFFFF !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08) !important;
 }
+
+/* Tulisan untuk selectbox biasa seperti All */
+[data-testid="stSidebar"] [data-testid="stSelectbox"] div[data-baseweb="select"] * {
+    color: #FFFFFF !important;
+}
+
+/* Arrow selectbox biasa */
+[data-testid="stSidebar"] [data-testid="stSelectbox"] div[data-baseweb="select"] svg {
+    fill: #FFFFFF !important;
+    color: #FFFFFF !important;
+    opacity: 1 !important;
+}
+
+/* Multiselect container tetap navy */
+[data-testid="stSidebar"] [data-testid="stMultiSelect"] div[data-baseweb="select"] > div {
+    background-color: #23324A !important;
+    border: 1px solid #CBD5E1 !important;
+    border-radius: 16px !important;
+}
+
+/* Tag pilihan multiselect putih */
+[data-testid="stSidebar"] [data-testid="stMultiSelect"] [data-baseweb="tag"] {
+    background: #FFFFFF !important;
+    background-color: #FFFFFF !important;
+    color: #23324A !important;
+    border: 1px solid #CBD5E1 !important;
+    border-radius: 10px !important;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12) !important;
+}
+
+/* Tulisan dalam tag multiselect: Month-to-month, One year, DSL, dll */
+[data-testid="stSidebar"] [data-testid="stMultiSelect"] [data-baseweb="tag"] *,
+[data-testid="stSidebar"] [data-testid="stMultiSelect"] [data-baseweb="tag"] span,
+[data-testid="stSidebar"] [data-testid="stMultiSelect"] [data-baseweb="tag"] div {
+    color: #23324A !important;
+    background: transparent !important;
+    background-color: transparent !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* X kecil di dalam tag tetap navy */
+[data-testid="stSidebar"] [data-testid="stMultiSelect"] [data-baseweb="tag"] svg {
+    fill: #23324A !important;
+    color: #23324A !important;
+    opacity: 1 !important;
+}
+
+/* X clear kanan dan arrow dropdown di multiselect tetap putih */
+[data-testid="stSidebar"] [data-testid="stMultiSelect"] div[data-baseweb="select"] svg {
+    fill: #FFFFFF !important;
+    color: #FFFFFF !important;
+    opacity: 1 !important;
+}
+
+/* Hide typing/search field tanpa bikin value hilang */
+[data-testid="stSidebar"] div[data-baseweb="select"] input {
+    width: 1px !important;
+    min-width: 1px !important;
+    max-width: 1px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    opacity: 0 !important;
+    caret-color: transparent !important;
+}
+            
+    /* Force white arrow - semua kemungkinan selector */
+[data-testid="stSidebarCollapseButton"] button,
+[data-testid="stSidebarCollapseButton"] button span,
+[data-testid="stSidebarCollapseButton"] svg,
+[data-testid="stSidebarCollapseButton"] svg path,
+[data-testid="stSidebarCollapseButton"] * {
+    color: #FFFFFF !important;
+}
+
+[data-testid="stSidebarCollapseButton"] button {
+    background: transparent !important;
+    filter: brightness(10) !important;  /* nuclear option */
+}        
+
 </style>
 """, unsafe_allow_html=True)
 
@@ -433,6 +598,19 @@ def metric_card(label, value, delta, positive=True):
     )
 
 
+def chart_explanation(explanation, conclusion):
+    st.markdown(
+        f"""
+        <div class="chart-insight">
+            <div class="chart-insight-title">💡 Explanation</div>
+            <div class="chart-insight-text">{explanation}</div>
+            <div class="chart-conclusion"><b>Conclusion:</b> {conclusion}</div>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+
 def clean_plotly(fig, height=380):
     fig.update_layout(
         height=height,
@@ -547,6 +725,19 @@ with st.sidebar:
         (int(df["tenure"].min()), int(df["tenure"].max()))
     )
 
+
+# Safety fallback: if a user clears all options using the X button,
+# keep the dashboard and navigation usable by returning to "All" values.
+if not contract_filter:
+    contract_filter = sorted(df["Contract"].unique())
+
+if not internet_filter:
+    internet_filter = sorted(df["InternetService"].unique())
+
+if not payment_filter:
+    payment_filter = sorted(df["PaymentMethod"].unique())
+
+
 filtered_df = df[
     (df["Contract"].isin(contract_filter)) &
     (df["InternetService"].isin(internet_filter)) &
@@ -582,10 +773,24 @@ st.markdown(
 unsafe_allow_html=True
 )
 
-st.link_button(
-    "🔗 Open Telco Customer Churn Dataset on Kaggle",
-    "https://www.kaggle.com/datasets/blastchar/telco-customer-churn"
-)
+notebook_path = "/Users/caseydaniellawinarto/KERJA DISINI YAH KES/streamlit-datascience/CEK_Python Notebook for ALP.ipynb"
+
+col_kaggle, col_nb, col_empty = st.columns([7,6,7])
+
+with col_kaggle:
+    st.link_button(
+        "🔗 Open Telco Customer Churn Dataset on Kaggle",
+        "https://www.kaggle.com/datasets/blastchar/telco-customer-churn"
+    )
+
+with col_nb:
+    with open(notebook_path, "rb") as f:
+        st.download_button(
+            label="📓 Download ALP CEK Notebook (.ipynb)",
+            data=f,
+            file_name="CEK_Python Notebook for ALP.ipynb",
+            mime="application/octet-stream"
+        )
 
 # =========================================================
 # KPI
@@ -632,6 +837,11 @@ with p1:
     )
     st.plotly_chart(clean_plotly(fig, 360), use_container_width=True)
 
+    chart_explanation(
+        "This bar chart shows how many customers did not churn and how many customers churned.",
+        "Most customers did not churn, but the churn group is still important because it represents customers who stopped using the service."
+    )
+
 with p2:
     internet_dist = filtered_df["InternetService"].value_counts().reset_index()
     internet_dist.columns = ["Internet Service", "Count"]
@@ -643,6 +853,11 @@ with p2:
         title="Internet Service Distribution",
     )
     st.plotly_chart(clean_plotly(fig, 360), use_container_width=True)
+
+    chart_explanation(
+        "This donut chart shows the proportion of customers by internet service type: Fiber optic, DSL, and no internet service.",
+        "Internet service type is useful for understanding customer behavior because different service types can have different churn patterns."
+    )
 
 with p3:
     selected_numeric = st.selectbox(
@@ -660,6 +875,11 @@ with p3:
         color_discrete_map={"Yes": "#FF6B6B", "No": "#1971C2"}
     )
     st.plotly_chart(clean_plotly(fig, 360), use_container_width=True)
+
+    chart_explanation(
+        "This chart shows the distribution of the selected numerical feature and compares churn versus non-churn customers.",
+        "The distribution helps us see whether features like MonthlyCharges, tenure, or TotalCharges show different patterns for churn customers."
+    )
 
 # =========================================================
 # RELATIONSHIP & CORRELATION
@@ -716,6 +936,11 @@ with r1:
     
     st.plotly_chart(fig, use_container_width=True)
 
+    chart_explanation(
+        "This heatmap shows the correlation between numerical features. Values close to 1 mean a strong positive relationship, while values close to -1 mean a negative relationship.",
+        "Tenure and TotalCharges usually have a strong relationship because customers who stay longer tend to have higher total charges."
+    )
+
 with r2:
     box_feature = st.selectbox(
         "Choose feature for boxplot",
@@ -731,6 +956,11 @@ with r2:
         color_discrete_map={"Yes": "#FF6B6B", "No": "#1971C2"}
     )
     st.plotly_chart(clean_plotly(fig, 420), use_container_width=True)
+
+    chart_explanation(
+        "This boxplot compares the selected numerical feature between churn and non-churn customers.",
+        "If the box positions are different, the selected feature may have a relationship with churn behavior."
+    )
 
 # =========================================================
 # CHURN ANALYSIS BY CATEGORICAL FEATURES
@@ -753,18 +983,35 @@ with cat1:
         barmode="group",
         text="size",
         title="Churn Based on Dependents",
-        color_discrete_map={"Yes": "#FF6B6B", "No": "#1971C2"}
+        color_discrete_map={"Yes": "#E8756E", "No": "#3B73B9"},
+        labels={"size": "Customers", "Churn": ""}
     )
-    fig.update_traces(
-        textposition='outside', 
-        textangle=0,            
-        cliponaxis=False
-    )
+    fig.update_traces(textposition="outside", cliponaxis=False, textfont=dict(size=11))
     fig.update_layout(
-        # Membuat legenda menjadi horizontal di bawah agar tidak menabrak label axis
-        legend=dict(orientation="h", yanchor="top", y=-0.25, xanchor="center", x=0.5, title_text="")
+        height=370,
+        paper_bgcolor="white",
+        plot_bgcolor="white",
+        margin=dict(l=10, r=10, t=50, b=100),
+        font=dict(family="Inter", color="#23324A", size=12),
+        title_font=dict(size=15, color="#23324A"),
+        bargap=0.25,
+        legend=dict(
+            title="",
+            orientation="h",
+            x=0.5, y=-0.18,
+            xanchor="center",
+            yanchor="top",
+            font=dict(size=11, color="#23324A")
+        ),
+       xaxis=dict(showgrid=False, zeroline=False, title=""),
+        yaxis=dict(showgrid=True, gridcolor="#E7DDCF", zeroline=False, title="Customers"),
     )
-    st.plotly_chart(clean_plotly(fig, 390), use_container_width=True)
+    st.plotly_chart(fig, use_container_width=True)
+
+    chart_explanation(
+        "This chart compares churn status between customers who have dependents and customers who do not have dependents.",
+        "Customer profile features such as dependents can help explain differences in churn behavior."
+    )
 
 with cat2:
     contract = filtered_df.groupby(["Contract", "Churn"], as_index=False).size()
@@ -776,18 +1023,39 @@ with cat2:
         barmode="group",
         text="size",
         title="Churn Based on Contract",
-        color_discrete_map={"Yes": "#FF6B6B", "No": "#1971C2"}
+        color_discrete_map={"Yes": "#E8756E", "No": "#3B73B9"},
+        labels={"size": "Customers", "Churn": ""}
     )
-
-    fig.update_traces(
-        textposition='outside', 
-        textangle=0,            
-        cliponaxis=False
-    )
+    fig.update_traces(textposition="outside", cliponaxis=False, textfont=dict(size=11))
     fig.update_layout(
-        legend=dict(orientation="h", yanchor="top", y=-0.25, xanchor="center", x=0.5, title_text="")
+        height=370,
+        paper_bgcolor="white",
+        plot_bgcolor="white",
+        margin=dict(l=10, r=10, t=50, b=100),
+        font=dict(family="Inter", color="#23324A", size=12),
+        title_font=dict(size=15, color="#23324A"),
+        bargap=0.25,
+        legend=dict(
+            title="",
+            orientation="h",
+            x=0.5, y=-0.18,
+            xanchor="center",
+            yanchor="top",
+            font=dict(size=11, color="#23324A")
+        ),
+        xaxis=dict(
+    showgrid=False, zeroline=False, 
+    title="",           # kosongkan, sudah jelas dari judul chart
+    tickangle=-15, tickfont=dict(size=11)
+),
+        yaxis=dict(showgrid=True, gridcolor="#E7DDCF", zeroline=False, title="Customers"),
     )
-    st.plotly_chart(clean_plotly(fig, 390), use_container_width=True)
+    st.plotly_chart(fig, use_container_width=True)
+
+    chart_explanation(
+        "This chart shows customer churn based on contract type: month-to-month, one year, and two year.",
+        "Contract type is an important churn indicator because customers with shorter contracts can leave more easily."
+    )
 
 with cat3:
     pay_rate = make_churn_rate_table(filtered_df, "PaymentMethod").sort_values("Churn Rate", ascending=True)
@@ -799,17 +1067,37 @@ with cat3:
         text=pay_rate["Churn Rate"].map(lambda x: f"{x:.1f}%"),
         title="Churn Rate by Payment Method",
         color="Churn Rate",
-        color_continuous_scale=["#DCFCE7", "#FEF3C7", "#FEE2E2"]
+        color_continuous_scale=["#DCFCE7", "#FEF3C7", "#FEE2E2"],
+        labels={"PaymentMethod": ""}
     )
-    fig.update_traces(
-        textposition='outside', 
-        textangle=0,            
-        cliponaxis=False        
-    )
+    fig.update_traces(textposition="outside", cliponaxis=False, textfont=dict(size=11))
     fig.update_layout(
-        margin=dict(r=50) 
+        height=370,
+        paper_bgcolor="white",
+        plot_bgcolor="white",
+        margin=dict(l=10, r=10, t=50, b=10),
+        font=dict(family="Inter", color="#23324A", size=12),
+        title_font=dict(size=15, color="#23324A"),
+        coloraxis=dict(
+            colorbar=dict(
+                title=dict(text="Churn Rate", font=dict(size=12, color="#23324A")),
+                thickness=12,
+                len=0.6,
+                x=1.02,
+                y=0.5,
+                tickfont=dict(size=10, color="#23324A"),
+                outlinewidth=0,
+            )
+        ),
+        xaxis=dict(showgrid=True, gridcolor="#E7DDCF", zeroline=False, title="Churn Rate (%)"),
+        yaxis=dict(showgrid=False, zeroline=False, tickfont=dict(size=11)),
     )
-    st.plotly_chart(clean_plotly(fig, 390), use_container_width=True)
+    st.plotly_chart(fig, use_container_width=True)
+
+    chart_explanation(
+        "This horizontal bar chart shows the churn rate for each payment method.",
+        "Payment method can be related to churn risk, so companies can pay more attention to payment groups with higher churn rates."
+    )
 
 # =========================================================
 # MODEL VISUALIZATION
@@ -854,6 +1142,11 @@ with mvis1:
     )
     st.plotly_chart(clean_plotly(fig, 420), use_container_width=True)
 
+    chart_explanation(
+        "This chart visualizes the Logistic Regression sigmoid line using TotalCharges as the input feature.",
+        "The sigmoid curve helps explain probability-based prediction, but one feature alone is not enough to fully explain churn."
+    )
+
 with mvis2:
     fig = px.scatter(
         filtered_df,
@@ -866,6 +1159,11 @@ with mvis2:
         color_discrete_map={"Yes": "#FF6B6B", "No": "#1971C2"}
     )
     st.plotly_chart(clean_plotly(fig, 420), use_container_width=True)
+
+    chart_explanation(
+        "This scatter plot compares MonthlyCharges and TotalCharges. Bubble size represents tenure, and color represents churn status.",
+        "This visualization helps show customer behavior patterns based on payment amount, total spending, and subscription duration."
+    )
 
 # =========================================================
 # MACHINE LEARNING MODEL PERFORMANCE
@@ -897,25 +1195,92 @@ with tabs[0]:
         )
 
     with summary2:
-        metric_choice = st.selectbox("Choose metric to compare", ["Accuracy", "Precision", "Recall", "F1-Score"], index=0)
+        metric_choice = st.selectbox(
+            "Choose metric to compare",
+            ["Accuracy", "Precision", "Recall", "F1-Score"],
+            index=0
+        )
+
+        chart_df = metrics_df.sort_values(metric_choice, ascending=False).copy()
+
+        chart_df["Model Display"] = chart_df["Model"].replace({
+            "Logistic Regression": "Logistic Regression",
+            "Logistic Regression (SMOTE)": "Logistic Regression (SMOTE)",
+            "K-Nearest Neighbors": "K-Nearest Neighbors",
+            "K-Nearest Neighbors (SMOTE)": "K-Nearest Neighbors (SMOTE)",
+            "Naive Bayes": "Naive Bayes",
+            "Naive Bayes (SMOTE)": "Naive Bayes (SMOTE)",
+            "Random Forest": "Random Forest",
+            "Random Forest (SMOTE)": "Random Forest (SMOTE)",
+        })
+
         fig = px.bar(
-            metrics_df.sort_values(metric_choice, ascending=False),
-            x="Model",
+            chart_df,
+            x="Model Display",
             y=metric_choice,
             color="Type",
-            text=metrics_df.sort_values(metric_choice, ascending=False)[metric_choice].map(lambda x: f"{x:.2%}"),
+            text=chart_df[metric_choice].map(lambda x: f"{x:.1%}"),
             title=f"{metric_choice} Comparison",
-            color_discrete_map={"Non-SMOTE": "#1971C2", "SMOTE": "#FF6B6B"}
+            color_discrete_map={
+                "Non-SMOTE": "#3B73B9",
+                "SMOTE": "#E8756E"
+            },
+            hover_data={
+                "Model": True,
+                "Model Display": False,
+                metric_choice: ":.2%",
+                "Type": True
+            }
         )
-        fig.update_yaxes(tickformat=".0%")
-        st.plotly_chart(clean_plotly(fig, 330), use_container_width=True)
+
+        fig.update_yaxes(tickformat=".0%", title_text="")
+        fig.update_xaxes(title_text="", tickangle=-30, tickfont=dict(size=11))
+        fig.update_traces(
+            textposition="outside",
+            textfont=dict(size=10, color="#23324A"),
+            cliponaxis=False
+        )
+
+        fig.update_layout(
+            height=330,
+            paper_bgcolor="white",
+            plot_bgcolor="white",
+            margin=dict(l=10, r=10, t=50, b=60),
+            font=dict(family="Inter", color="#23324A", size=12),
+            title_font=dict(size=16, color="#23324A"),
+            bargap=0.2,
+            uniformtext_minsize=8,
+            uniformtext_mode="hide",
+            legend=dict(
+                title="",
+                orientation="h",
+                x=0.5,
+                y=1.12,
+                xanchor="center",
+                yanchor="top",
+                bgcolor="rgba(0,0,0,0)",
+                font=dict(size=11, color="#23324A"),
+            )
+        )
+
+        fig.update_xaxes(showgrid=True, gridcolor="#E7DDCF", zeroline=False)
+        fig.update_yaxes(showgrid=True, gridcolor="#E7DDCF", zeroline=False)
+
+        st.plotly_chart(fig, use_container_width=True)
+
+        chart_explanation(
+            "This bar chart compares machine learning models using the selected metric, such as Accuracy, Precision, Recall, or F1-Score.",
+            "The best model depends on the chosen metric. For churn prediction, recall is important because the company wants to detect as many churn customers as possible."
+        )
 
     best_acc = metrics_df.sort_values("Accuracy", ascending=False).iloc[0]
     best_recall = metrics_df.sort_values("Recall", ascending=False).iloc[0]
 
     b1, b2 = st.columns(2)
+
     with b1:
         st.success(f"Highest Accuracy: {best_acc['Model']} — {best_acc['Accuracy']:.2%}")
+
     with b2:
         st.info(f"Highest Churn Recall: {best_recall['Model']} — {best_recall['Recall']:.2%}")
 
@@ -933,6 +1298,11 @@ with tabs[1]:
         color_continuous_scale="Blues"
     )
     st.plotly_chart(clean_plotly(fig, 430), use_container_width=True)
+
+    chart_explanation(
+        "The confusion matrix compares actual churn status and predicted churn status. It shows correct and incorrect predictions.",
+        "This chart helps evaluate model mistakes, especially false negatives where churn customers are predicted as non-churn."
+    )
 
     tn, fp, fn, tp = cm.ravel()
     c1, c2, c3, c4 = st.columns(4)
