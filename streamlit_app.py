@@ -20,6 +20,8 @@ from sklearn.metrics import (
     classification_report,
 )
 from imblearn.over_sampling import SMOTE
+from pathlib import Path
+import streamlit as st
 
 # =========================================================
 # PAGE CONFIG
@@ -783,21 +785,19 @@ with col_kaggle:
         "https://www.kaggle.com/datasets/blastchar/telco-customer-churn"
     )
 
-from pathlib import Path
-import streamlit as st
-
 notebook_path = Path("CEK_Python Notebook for ALP.ipynb")
 
-if notebook_path.exists():
-    with open(notebook_path, "rb") as f:
-        st.download_button(
-            label="📓 Download ALP CEK Notebook (.ipynb)",
-            data=f.read(),
-            file_name="CEK_Python Notebook for ALP.ipynb",
-            mime="application/octet-stream"
-        )
-else:
-    st.error(f"Notebook tidak ditemukan: {notebook_path}")
+with col_nb:
+    if notebook_path.exists():
+        with open(notebook_path, "rb") as f:
+            st.download_button(
+                label="📓 Download ALP CEK Notebook (.ipynb)",
+                data=f.read(),
+                file_name="CEK_Python Notebook for ALP.ipynb",
+                mime="application/octet-stream"
+            )
+    else:
+        st.error(f"Notebook tidak ditemukan: {notebook_path}")
 
 # =========================================================
 # KPI
