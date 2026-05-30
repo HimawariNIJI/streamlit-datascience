@@ -783,14 +783,21 @@ with col_kaggle:
         "https://www.kaggle.com/datasets/blastchar/telco-customer-churn"
     )
 
-with col_nb:
+from pathlib import Path
+import streamlit as st
+
+notebook_path = Path("CEK_Python Notebook for ALP.ipynb")
+
+if notebook_path.exists():
     with open(notebook_path, "rb") as f:
         st.download_button(
             label="📓 Download ALP CEK Notebook (.ipynb)",
-            data=f,
+            data=f.read(),
             file_name="CEK_Python Notebook for ALP.ipynb",
             mime="application/octet-stream"
         )
+else:
+    st.error(f"Notebook tidak ditemukan: {notebook_path}")
 
 # =========================================================
 # KPI
