@@ -1295,16 +1295,55 @@ with tabs[1]:
     selected_model = st.selectbox("Choose model", list(models.keys()))
     cm = models[selected_model]["cm"]
 
+    # 1. Matikan text_auto bawaan agar tidak menyembunyikan angka kecil/tertentu
     fig = px.imshow(
         cm,
-        text_auto=True,
+        text_auto=False, # Diubah menjadi False
         labels=dict(x="Predicted", y="Actual"),
         x=["No Churn", "Churn"],
         y=["No Churn", "Churn"],
         title=f"Confusion Matrix — {selected_model}",
         color_continuous_scale="Blues"
     )
-    st.plotly_chart(clean_plotly(fig, 430), use_container_width=True)
+    
+    # 2. Jalankan fungsi pembersih Anda terlebih dahulu
+    fig = clean_plotly(fig, 430)
+
+    # 3. BUAT ANOTASI TEKS MANUAL AGAR KONTRAST DAN PASTI MUNCUL
+    max_val = cm.max() if cm.size > 0 else 1
+    annotations = []
+    labels_x = ["No Churn", "Churn"]
+    labels_y = ["No Churn", "Churn"]
+    
+    for i in range(len(labels_y)):
+        for j in range(len(labels_x)):
+            val = cm[i, j]
+            
+            # Jika kotak bernilai tinggi (gelap), beri teks putih. Jika rendah, beri hitam.
+            font_color = "white" if val > (max_val * 0.5) else "black"
+            
+            # Deteksi format tampilan angka (desimal/float atau angka bulat biasa)
+            text_display = f"{val:.2f}" if isinstance(val, float) else f"{int(val)}"
+            
+            annotations.append(
+                dict(
+                    x=labels_x[j],
+                    y=labels_y[i],
+                    text=text_display,
+                    showarrow=False,
+                    font=dict(
+                        color=font_color,
+                        weight="bold",  # Menebalkan teks agar lebih kontras
+                        size=14         # Ukuran font diperjelas
+                    )
+                )
+            )
+            
+    # 4. Pasang anotasi manual ke dalam grafik layout
+    fig.update_layout(annotations=annotations)
+
+    # 5. Tampilkan grafik yang sudah diperbaiki ke Streamlit
+    st.plotly_chart(fig, use_container_width=True)
 
     chart_explanation(
         "The confusion matrix compares actual churn status and predicted churn status. It shows correct and incorrect predictions.",
