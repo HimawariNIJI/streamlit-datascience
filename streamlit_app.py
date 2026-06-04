@@ -1485,4 +1485,3 @@ if submitted:
     st.dataframe(input_data, use_container_width=True)
 
     st.caption("Note: tenure and MonthlyCharges are standardized using the same scaler as the training data.")
-
